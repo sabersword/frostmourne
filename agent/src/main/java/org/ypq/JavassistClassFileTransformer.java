@@ -22,7 +22,7 @@ public class JavassistClassFileTransformer implements ClassFileTransformer {
             ctClass = ClassPool.getDefault().makeClass(new ByteArrayInputStream(classfileBuffer));
             for(CtBehavior method : ctClass.getDeclaredBehaviors()) {
                 if (method.getLongName().contains("org.ypq.controller.TestController.test")) {
-                    System.out.println("成功找到匹配的类和方法, 准备织入" + className + "||||" + method.getLongName());
+                    System.out.println("成功找到匹配的类和方法, 准备织入" + className + "  LongName :   " + method.getLongName());
                     method.insertBefore("{ System.out.print(\"age:\"+$1); System.out.println(\"string:\"+$2);}");
                     method.insertAfter("{ System.out.print(\"string:\"+$2); System.out.println(\"age:\"+$1);}");
                 }
