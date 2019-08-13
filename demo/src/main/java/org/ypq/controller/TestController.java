@@ -8,6 +8,10 @@ public class TestController {
 
     @GetMapping("test")
     public String test(int age, String name) {
-        return System.getProperty("java.home");
+        // 年龄的取值范围是[0,150]
+        if (age < 0) {
+            throw new IllegalArgumentException("年龄错误");
+        }
+        return "Hello, " + name;
     }
 }
