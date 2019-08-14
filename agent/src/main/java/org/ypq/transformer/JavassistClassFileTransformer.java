@@ -1,4 +1,4 @@
-package org.ypq;
+package org.ypq.transformer;
 
 import javassist.ClassPool;
 import javassist.CtBehavior;
@@ -6,7 +6,6 @@ import javassist.CtClass;
 
 import java.io.ByteArrayInputStream;
 import java.lang.instrument.ClassFileTransformer;
-import java.lang.instrument.IllegalClassFormatException;
 import java.security.ProtectionDomain;
 
 public class JavassistClassFileTransformer implements ClassFileTransformer {
@@ -23,8 +22,9 @@ public class JavassistClassFileTransformer implements ClassFileTransformer {
             for(CtBehavior method : ctClass.getDeclaredBehaviors()) {
                 if (method.getLongName().contains("org.ypq.controller.TestController.test")) {
                     System.out.println("成功找到匹配的类和方法, 准备织入" + className + "  LongName :   " + method.getLongName());
-                    method.insertBefore("{ System.out.print(\"age:\"+$1); System.out.println(\"string:\"+$2);}");
-                    method.insertAfter("{ System.out.print(\"string:\"+$2); System.out.println(\"age:\"+$1);}");
+                    CtClass throwableClass = ClassPool.getDefault().get("java.lang.Throwable");
+                    method.addCatch("{ System.out.println(\"捕获到异常,重新抛出:\" + $e); throw $e; }", throwableClass);
+                    method.insertBefore("{ System.out.println(\"age:\"+$1); System.out.println(\"string:\"+$2);}");
                 }
             }
             returnByte = ctClass.toBytecode();
