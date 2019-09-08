@@ -1,4 +1,4 @@
-package org.ypq;
+package org.ypq.agent;
 
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -10,9 +10,12 @@ import java.net.URLClassLoader;
 public class FrostmourneClassLoader extends URLClassLoader {
 
     public FrostmourneClassLoader(URL[] urls) {
-        super(urls, ClassLoader.getSystemClassLoader().getParent());
+        super(urls, ClassLoader.getSystemClassLoader());
     }
 
+    public FrostmourneClassLoader(URL[] urls, ClassLoader classLoader) {
+        super(urls, classLoader);
+    }
     @Override
     protected synchronized Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
         final Class<?> loadedClass = findLoadedClass(name);

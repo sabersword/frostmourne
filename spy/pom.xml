@@ -8,35 +8,24 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
-    <artifactId>attach</artifactId>
-
-    <dependencies>
-        <dependency>
-            <groupId>com.github.olivergondza</groupId>
-            <artifactId>maven-jdk-tools-wrapper</artifactId>
-            <version>0.1</version>
-            <scope>provided</scope>
-            <optional>true</optional>
-        </dependency>
-
-    </dependencies>
+    <artifactId>spy</artifactId>
 
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
+                <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <archive>
-                        <manifestEntries>
-                            <Main-Class>org.ypq.attach.Attach</Main-Class>
-                        </manifestEntries>
-                    </archive>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
-        </plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+            </plugin>
 
+        </plugins>
     </build>
 
 </project>

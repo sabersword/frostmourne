@@ -18,6 +18,16 @@
             <artifactId>javassist</artifactId>
             <version>3.25.0-GA</version>
         </dependency>
+        <dependency>
+            <groupId>org.ow2.asm</groupId>
+            <artifactId>asm</artifactId>
+            <version>7.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.ow2.asm</groupId>
+            <artifactId>asm-commons</artifactId>
+            <version>7.0</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -39,8 +49,8 @@
                             <addClasspath>true</addClasspath>
                         </manifest>
                         <manifestEntries>
-                            <Premain-Class>org.ypq.Agent</Premain-Class>
-                            <Agent-Class>org.ypq.Agent</Agent-Class>
+                            <Premain-Class>org.ypq.agent.Agent</Premain-Class>
+                            <Agent-Class>org.ypq.agent.Agent</Agent-Class>
                             <Can-Retransform-Classes>true</Can-Retransform-Classes>
                             <Can-Redefine-Classes>true</Can-Redefine-Classes>
                         </manifestEntries>

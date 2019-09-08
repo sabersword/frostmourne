@@ -20,6 +20,7 @@
         <module>agent</module>
         <module>attach</module>
         <module>demo</module>
+        <module>spy</module>
     </modules>
 
 </project>
